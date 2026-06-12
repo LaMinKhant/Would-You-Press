@@ -4,7 +4,7 @@
 const ANSWERS = {
   // Easy
   q0:  { type: 'bool', ans: true },
-  q1:  { type: 'bool', ans: false },
+  q1:  { type: 'bool', ans: true },
   q2:  { type: 'bool', ans: false },
   q3:  { type: 'bool', ans: true },
   q4:  { type: 'bool', ans: true },
@@ -50,6 +50,41 @@ const ANSWERS = {
   q42: { type: 'bool', ans: false },
   q43: { type: 'special', special: 'hidden' },
   q44: { type: 'bool', ans: true },
+
+  // ===== Round 2: Bonus / harder set =====
+  // Easy 2
+  q45: { type: 'special', special: 'green_only' },
+  q46: { type: 'special', special: 'even_qnum' },
+  q47: { type: 'special', special: 'reflex1s' },
+  q48: { type: 'special', special: 'no_negation' },
+  q49: { type: 'special', special: 'count5th' },
+  q50: { type: 'special', special: 'pos_tl' },
+  q51: { type: 'special', special: 'shrink' },
+  q52: { type: 'bool', ans: false },
+  q53: { type: 'bool', ans: true },
+  q54: { type: 'bool', ans: false },
+  // Medium 2
+  q55: { type: 'special', special: 'prev_wrong' },
+  q56: { type: 'special', special: 'two_words_max' },
+  q57: { type: 'special', special: 'repeat_corner' },
+  q58: { type: 'special', special: 'stroop2' },
+  q59: { type: 'special', special: 'time5s' },
+  q60: { type: 'special', special: 'math_sum5' },
+  q61: { type: 'special', special: 'cats_gt3' },
+  q62: { type: 'special', special: 'night_only' },
+  q63: { type: 'bool', ans: true },
+  q64: { type: 'bool', ans: false },
+  // Hard 2
+  q65: { type: 'special', special: 'last2_wrong' },
+  q66: { type: 'special', special: 'close_eyes_3s' },
+  q67: { type: 'special', special: 'inverse_label' },
+  q68: { type: 'special', special: 'must_skip' },
+  q69: { type: 'special', special: 'press3_not3rd' },
+  q70: { type: 'special', special: 'recall_q1' },
+  q71: { type: 'special', special: 'sum4' },
+  q72: { type: 'bool', ans: false },
+  q73: { type: 'bool', ans: true },
+  q74: { type: 'bool', ans: false },
 };
 
 export default function handler(req, res) {
@@ -66,7 +101,15 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { qId, pressed, eventReady, tapCount, cornerCount, smallestCorrect, lastAns, lastPressed, timeElapsed, hour } = req.body;
+  const {
+    qId, pressed, eventReady, tapCount, cornerCount, smallestCorrect,
+    lastAns, lastPressed, timeElapsed, hour,
+    // Round 2 extra fields
+    greenPressed, qNumEven, reflexHit, hasNegation, flashCount,
+    posCorrect, shrinkHit, prevWrong, wordCountOk, repeatCornerCorrect,
+    stroopCorrect, time5sHit, sumGt5, catCountGt3, isNight,
+    last2Wrong, eyesReflexHit, didSkip, tap3NotThird, recallCorrect, sum4Correct
+  } = req.body;
 
   const q = ANSWERS[qId];
   if (!q) {
@@ -133,6 +176,87 @@ export default function handler(req, res) {
   }
   else if (q.special === 'disappear' || q.special === 'hidden') {
     correct = (src === 'press');
+  }
+  // ===== Round 2 specials =====
+  else if (q.special === 'green_only') {
+    correct = (src === 'press' && greenPressed === true);
+  }
+  else if (q.special === 'even_qnum') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && qNumEven === true);
+  }
+  else if (q.special === 'reflex1s') {
+    correct = (src === 'press' && reflexHit === true);
+  }
+  else if (q.special === 'no_negation') {
+    // If text has negation word, correct = don't press; else press
+    if (hasNegation === true) correct = (src === 'timeout');
+    else correct = (src === 'press');
+  }
+  else if (q.special === 'count5th') {
+    correct = (src === 'press' && flashCount === 5);
+  }
+  else if (q.special === 'pos_tl') {
+    correct = (src === 'press' && posCorrect === true);
+  }
+  else if (q.special === 'shrink') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && shrinkHit === true);
+  }
+  else if (q.special === 'prev_wrong') {
+    // press only if previous round was wrong
+    if (prevWrong === true) correct = (src === 'press');
+    else correct = (src === 'timeout');
+  }
+  else if (q.special === 'two_words_max') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && wordCountOk === true);
+  }
+  else if (q.special === 'repeat_corner') {
+    correct = (src !== 'timeout' && repeatCornerCorrect === true);
+  }
+  else if (q.special === 'stroop2') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && stroopCorrect === true);
+  }
+  else if (q.special === 'time5s') {
+    correct = (src === 'press' && time5sHit === true);
+  }
+  else if (q.special === 'math_sum5') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && sumGt5 === true);
+  }
+  else if (q.special === 'cats_gt3') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && catCountGt3 === true);
+  }
+  else if (q.special === 'night_only') {
+    const isDay = (hour >= 6 && hour < 18);
+    if (src === 'timeout') correct = isDay;
+    else correct = !isDay;
+  }
+  else if (q.special === 'last2_wrong') {
+    if (last2Wrong === true) correct = (src === 'press');
+    else correct = (src === 'timeout');
+  }
+  else if (q.special === 'close_eyes_3s') {
+    correct = (src === 'press' && eyesReflexHit === true);
+  }
+  else if (q.special === 'must_skip') {
+    correct = (didSkip === true);
+  }
+  else if (q.special === 'press3_not3rd') {
+    correct = (tap3NotThird === true);
+  }
+  else if (q.special === 'recall_q1') {
+    correct = (src === 'press' && recallCorrect === true);
+  }
+  else if (q.special === 'inverse_label') {
+    if (src === 'timeout') correct = false;
+    else correct = (src === 'press' && eventReady === true);
+  }
+  else if (q.special === 'sum4') {
+    correct = (src === 'press' && sum4Correct === true);
   }
 
   // Return only correct/wrong — never return the answer itself

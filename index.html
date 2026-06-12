@@ -462,7 +462,7 @@ function applyLang() {
   }
 }
 
-// QUESTIONS — answers တွေ ဒီမှာ မပါတော့ဘူး (server မှာ ရှိတယ်)
+// QUESTIONS 
 const QUESTIONS = [
   { level: 'Easy',   textMy: "နှိပ်ပါ",                                           textEn: "Press" },
   { level: 'Easy',   textMy: "မနှိပ်ပါနဲ့",                                       textEn: "DO NOT PRESS" },
@@ -510,7 +510,44 @@ const QUESTIONS = [
   { level: 'Hard',   textMy: "၂၇ က မကိန်း ဖြစ်ခဲ့ရင် နှိပ်ပါ",                 textEn: "Press if 27 was an odd number" },
   { level: 'Hard',   textMy: "နောက်လာမယ့် အမိန့် ၂ ခုလုံးကို ကျော်လိုက်ပါ",    textEn: "Ignore the next 2 commands" },
   { level: 'Hard',   textMy: "ဖုံးကွယ်ထားတဲ့ ခလုတ်ကို ရှာနှိပ်ပါ",              textEn: "Click the hidden button",            special: 'hidden' },
-  { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက လုပ်ခဲ့တဲ့အတိုင်း ပြန်လုပ်ပါ", textEn: "Do what you did at Question 1" }
+  { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက လုပ်ခဲ့တဲ့အတိုင်း ပြန်လုပ်ပါ", textEn: "Do what you did at Question 1" },
+
+  // ===== Round 2: Bonus questions (unlock after first 45) =====
+  // Easy 2
+  { level: 'Easy',   textMy: "အစိမ်းရောင်ခလုတ်ကိုပဲ နှိပ်ပါ၊ တခြားအရောင်တွေ့ရင် မနှိပ်ပါနဲ့", textEn: "Press only the GREEN button", special: 'green_only' },
+  { level: 'Easy',   textMy: "ဒီမေးခွန်းနံပါတ်က စုံကိန်းဖြစ်ရင် နှိပ်ပါ", textEn: "Press if this question number is even", special: 'even_qnum' },
+  { level: 'Easy',   textMy: "ခလုတ်ပေါ်လာပြီး ၁ စက္ကန့်အတွင်း အမြန်ဆုံး နှိပ်ပါ", textEn: "Press within 1 second of it appearing", special: 'reflex1s' },
+  { level: 'Easy',   textMy: "ဒီစာသားမှာ 'မ' ပါဝင်နေရင် မနှိပ်ပါနဲ့", textEn: "If this text contains the letter 'မ', don't press", special: 'no_negation' },
+  { level: 'Easy',   textMy: "ခလုတ်ပေါ်လာတဲ့ အရေအတွက် ၅ ခုမြောက်မှ နှိပ်ပါ", textEn: "Press only on the 5th flash", special: 'count5th' },
+  { level: 'Easy',   textMy: "မျက်နှာပြင်ရဲ့ ဘယ်ဘက်အပေါ်ထောင့်မှာ ခလုတ်ပေါ်မှ နှိပ်ပါ", textEn: "Press only when the button is top-left", special: 'pos_tl' },
+  { level: 'Easy',   textMy: "ခလုတ်အရွယ်အစား သေးသွားရင် နှိပ်ပါ", textEn: "Press when the button shrinks", special: 'shrink' },
+  { level: 'Easy',   textMy: "မိုးကောင်းကင်ဟာ အစိမ်းရောင်ဆိုရင် နှိပ်ပါ", textEn: "Press if the sky is normally green" },
+  { level: 'Easy',   textMy: "ဂိမ်းတစ်ခုမှာ Lives ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if this game has lives" },
+  { level: 'Easy',   textMy: "ပင်လယ်ရေဟာ ချိုရည်ဆိုရင် နှိပ်ပါ", textEn: "Press if seawater is sweet" },
+
+  // Medium 2
+  { level: 'Medium', textMy: "အရင်မေးခွန်းရဲ့ အဖြေမှန်ခဲ့ရင် အခုမနှိပ်ပါနဲ့၊ အမှားဆိုမှ နှိပ်ပါ", textEn: "If the last answer was correct, don't press; if it was wrong, press", special: 'prev_wrong' },
+  { level: 'Medium', textMy: "မျက်နှာပြင်မှာ စာလုံး ၂ လုံးထက်ပိုပါရင် မနှိပ်ပါနဲ့", textEn: "If there are more than 2 words on screen, don't press", special: 'two_words_max' },
+  { level: 'Medium', textMy: "အရင်မေးခွန်းမှာ နှိပ်ခဲ့တဲ့ ထောင့်နေရာကိုပဲ ပြန်နှိပ်ပါ", textEn: "Press the same corner you pressed before", special: 'repeat_corner' },
+  { level: 'Medium', textMy: "ခလုတ်ရဲ့ အရောင်နဲ့ စာသားရဲ့အရောင် တူညီမှ နှိပ်ပါ", textEn: "Press only if the button color matches the text color", special: 'stroop2' },
+  { level: 'Medium', textMy: "ဂိမ်းအချိန် ၅ စက္ကန့်ပြည့်တဲ့အခါမှ နှိပ်ပါ", textEn: "Press only at exactly 5 seconds", special: 'time5s' },
+  { level: 'Medium', textMy: "ဒီစာသားထဲက ဂဏန်းတွေကို ပေါင်းပြီး ၅ ထက်ကြီးရင် နှိပ်ပါ", textEn: "Sum the numbers below — press if greater than 5", special: 'math_sum5' },
+  { level: 'Medium', textMy: "စခရင်ပေါ်မှာ ကြောင်ပုံ ၃ ကောင်ထက်ပိုပါရင် နှိပ်ပါ", textEn: "Press if there are more than 3 cats", special: 'cats_gt3' },
+  { level: 'Medium', textMy: "အခုအချိန်မှာ နေ့ခင်းဘက်ဆိုရင် မနှိပ်ပါနဲ့၊ ညဘက်ဆိုမှ နှိပ်ပါ", textEn: "Don't press if it's daytime; press only if it's night", special: 'night_only' },
+  { level: 'Medium', textMy: "ပန်းကန်တစ်ချပ်မှာ ဘက်(၄)ဘက် ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if a square has 4 sides" },
+  { level: 'Medium', textMy: "ငါးတွေဟာ လေထဲတွင် အသက်ရှူနိုင်တယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if fish can breathe air normally" },
+
+  // Hard 2
+  { level: 'Hard',   textMy: "နောက်ဆုံးမေးခွန်း ၂ ခုလုံးရဲ့ အဖြေမှားခဲ့မှသာ အခု နှိပ်ပါ", textEn: "Press only if your last 2 answers were both wrong", special: 'last2_wrong' },
+  { level: 'Hard',   textMy: "မျက်စိကို ၃ စက္ကန့်ပိတ်ထားပါ၊ ဖွင့်ပြီးတာနဲ့ ခလုတ်ကို ချက်ချင်းနှိပ်ပါ", textEn: "Close your eyes for 3 seconds, then press immediately when you open them", special: 'close_eyes_3s' },
+  { level: 'Hard',   textMy: "အောက်က Label က 'False' ဆိုရင် 'True' လို့ သဘောထားပြီး နှိပ်ပါ၊ 'True' ဆိုရင် မနှိပ်ပါနဲ့", textEn: "If the label below says 'False', treat it as 'True' and press. If it says 'True', don't press", special: 'inverse_label' },
+  { level: 'Hard',   textMy: "ဒီမေးခွန်းရဲ့ အဖြေကို နောက်မေးခွန်းကျမှ နှိပ်ရမှာဖြစ်လို့ အခု 'ကျော်' (Skip) ပါ", textEn: "You'll answer this on the next question — Skip this one now", special: 'must_skip' },
+  { level: 'Hard',   textMy: "ခလုတ်ကို ၃ ခါနှိပ်ပါ၊ ဒါပေမဲ့ ၃ ကြိမ်မြောက်မှာတော့ မနှိပ်ပါနဲ့", textEn: "Press 3 times, but don't press on the 3rd time", special: 'press3_not3rd' },
+  { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက ဘာအရောင်ကို နှိပ်ခဲ့လဲ? အဲ့ဒီအရောင်ကို ရှာပြီး နှိပ်ပါ", textEn: "What color did you press on Question 1? Find and press that color", special: 'recall_q1' },
+  { level: 'Hard',   textMy: "ခလုတ်တွေ အကုန်လုံးရဲ့ ပေါင်းလဒ်က ၄ ဖြစ်မှ နှိပ်ပါ", textEn: "Press the buttons whose total sum equals 4", special: 'sum4' },
+  { level: 'Hard',   textMy: "ဒီမေးခွန်းက အလိမ်အညာဖြစ်တဲ့အတွက် မနှိပ်ပါနဲ့", textEn: "This question is a trick — do NOT press" },
+  { level: 'Hard',   textMy: "သင်ဟာ စက်ရုပ်တစ်ခု မဟုတ်ပါက နှိပ်ပါ", textEn: "Press if you are not a robot" },
+  { level: 'Hard',   textMy: "ဒီစာကြောင်းကို ၂ ကြိမ်ဖတ်ပြီးမှ နှိပ်ပါ (အချိန်တွေးတွေး)", textEn: "Read this sentence twice before pressing (think about timing)" }
 ];
 
 function getQText(q) { return currentLang === 'en' ? q.textEn : q.textMy; }
@@ -523,7 +560,10 @@ let gs = {
   currentQ: null, phase: 'idle', interval: null, delayTimeout: null,
   lastAns: true, lastPressed: false, tapCount: 0,
   eventReady: false, 
-  corners: { tl: false, tr: false, bl: false, br: false }, cornerCount: 0 
+  corners: { tl: false, tr: false, bl: false, br: false }, cornerCount: 0,
+  // Round 2 tracking
+  prevWrong: false, last2Wrong: false, lastCorrectFlag: true,
+  lastCorner: null, q1Color: null, sumPicks: [], sum4Done: false
 };
 
 let ringAnim = { current: 1, target: 1, color: '#22c55e', targetColor: '#22c55e', raf: null, lastTime: null };
@@ -705,6 +745,7 @@ function startRound() {
 
   if (gs.interval) clearInterval(gs.interval);
   if (gs.delayTimeout) clearTimeout(gs.delayTimeout); 
+  if (gs._flashTimer) { clearInterval(gs._flashTimer); gs._flashTimer = null; }
   
   gs.phase = 'playing';
   gs.timeLeft = TIMER_MAX;
@@ -712,6 +753,7 @@ function startRound() {
   gs.eventReady = false; 
   gs.corners = { tl: false, tr: false, bl: false, br: false };
   gs.cornerCount = 0;
+  gs._press3Count = 0;
 
   const wrap = document.getElementById('main-wrap');
   const btn = document.getElementById('main-btn');
@@ -720,6 +762,10 @@ function startRound() {
 
   wrap.style.background = '#0a0a0a';
   btn.style.opacity = '1';
+  btn.style.position = 'absolute';
+  btn.style.left = '50%'; btn.style.top = '50%';
+  btn.style.transform = 'translate(-50%,-50%)';
+  resizeCanvas();
   qTextEl.className = 'q-text'; 
 
   let qIdx = (gs.round - 1) % QUESTIONS.length;
@@ -727,7 +773,12 @@ function startRound() {
   
   lvlEl.style.visibility = 'visible';
   const lvlNames = { my: { Easy: 'လွယ်', Medium: 'အလတ်', Hard: 'ခက်' }, en: { Easy: 'Easy', Medium: 'Medium', Hard: 'Hard' } };
-  lvlEl.textContent = currentLang === 'en' ? `Lvl: ${gs.currentQ.level} (${(qIdx % 15) + 1}/15)` : `အဆင့်: ${lvlNames.my[gs.currentQ.level]} (${(qIdx % 15) + 1}/15)`;
+  const setSize = qIdx < 45 ? 15 : 30;
+  const setStart = qIdx < 45 ? 0 : 45;
+  const setIdx = (qIdx - setStart) % setSize + 1;
+  const perLevel = qIdx < 45 ? 15 : 10;
+  const posInLevel = ((qIdx - setStart) % perLevel) + 1;
+  lvlEl.textContent = currentLang === 'en' ? `Lvl: ${gs.currentQ.level} (${posInLevel}/${perLevel})` : `အဆင့်: ${lvlNames.my[gs.currentQ.level]} (${posInLevel}/${perLevel})`;
   lvlEl.className = 'q-lvl lvl-' + gs.currentQ.level.toLowerCase();
 
   let displayTxt = getQText(gs.currentQ);
@@ -828,6 +879,164 @@ function startRound() {
         if (el) { el.style.display='flex'; el.classList.remove('hit'); }
       });
     }
+    // ===== Round 2 specials =====
+    else if (gs.currentQ.special === 'green_only') {
+      const colors = ['#22c55e','#ef4444','#38bdf8','#eab308'];
+      const correctIdx = Math.floor(Math.random()*4);
+      // ensure green is among options at a random slot
+      const palette = colors.slice();
+      const greenIdx = Math.floor(Math.random()*4);
+      gs._greenSlot = greenIdx;
+      const labels = ['🟢','🔴','🔵','🟡'].sort(() => Math.random()-0.5);
+      gs._greenEmoji = '🟢';
+      displayTxt = getQText(gs.currentQ) + "<div style='display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:32px;'>" +
+        labels.map(e => `<span data-c='${e}' style='cursor:pointer;'>${e}</span>`).join('') + "</div>";
+    }
+    else if (gs.currentQ.special === 'even_qnum') {
+      gs.eventReady = (((qIdx+1) % 2) === 0);
+    }
+    else if (gs.currentQ.special === 'reflex1s') {
+      btn.style.opacity = '0.15';
+      gs._reflexReadyAt = null;
+      const delay = 1000 + Math.random()*2000;
+      gs.delayTimeout = setTimeout(() => {
+        if (gs.phase === 'playing') {
+          btn.style.opacity = '1';
+          gs._reflexReadyAt = performance.now();
+        }
+      }, delay);
+    }
+    else if (gs.currentQ.special === 'no_negation') {
+      // Language-independent: randomly decide if this instance "contains negation"
+      // so correctness doesn't depend on which language is displayed.
+      gs._hasNegation = Math.random() > 0.5;
+      const flagTxt = gs._hasNegation
+        ? (currentLang === 'en' ? "(contains 'မ')" : "(ဒီစာထဲမှာ 'မ' ပါတယ်)")
+        : (currentLang === 'en' ? "(does not contain 'မ')" : "(ဒီစာထဲမှာ 'မ' မပါဘူး)");
+      displayTxt += `<div style='margin-top:8px;font-size:14px;color:#94a3b8;'>${flagTxt}</div>`;
+    }
+    else if (gs.currentQ.special === 'count5th') {
+      gs._flashCount = 0;
+      qTextEl.innerHTML = displayTxt + "<div class='large-emoji' id='flash-em' style='font-size:40px;'>·</div>";
+      gs._flashTimer = setInterval(() => {
+        if (gs.phase !== 'playing') return;
+        gs._flashCount++;
+        const fe = document.getElementById('flash-em');
+        if (fe) fe.textContent = '⚡'.repeat(Math.min(gs._flashCount,5));
+        if (gs._flashCount >= 6) { clearInterval(gs._flashTimer); }
+      }, 500);
+    }
+    else if (gs.currentQ.special === 'pos_tl') {
+      btn.style.position = 'absolute';
+      btn.style.left = '8px'; btn.style.top = '8px';
+      btn.style.transform = 'none';
+      gs._posTLCorrect = true;
+    }
+    else if (gs.currentQ.special === 'shrink') {
+      gs._shrinkReady = false;
+      gs.delayTimeout = setTimeout(() => {
+        if (gs.phase === 'playing') {
+          btn.style.width = (parseInt(getComputedStyle(btn).width)*0.6)+'px';
+          btn.style.height = (parseInt(getComputedStyle(btn).height)*0.6)+'px';
+          gs._shrinkReady = true;
+        }
+      }, 1000 + Math.random()*1500);
+    }
+    else if (gs.currentQ.special === 'prev_wrong') {
+      // server uses gs.prevWrong from payload
+    }
+    else if (gs.currentQ.special === 'two_words_max') {
+      const wordCounts = [1,2,3,4];
+      const n = wordCounts[Math.floor(Math.random()*wordCounts.length)];
+      const words = (currentLang==='en' ? ['Sky','Run','Blue','Cat','Go','Fast','Tree','Yes'] : ['ကောင်းကင်','ပြေး','အပြာ','ကြောင်','သွား','မြန်','သစ်ပင်','ဟုတ်']);
+      const picked = [];
+      for(let i=0;i<n;i++) picked.push(words[Math.floor(Math.random()*words.length)]);
+      gs._wordCountOk = (n <= 2);
+      displayTxt += "<div style='margin-top:8px;font-size:14px;color:#94a3b8;'>" + picked.join(' • ') + "</div>";
+    }
+    else if (gs.currentQ.special === 'repeat_corner') {
+      ['tl','tr','bl','br'].forEach(c => {
+        const el = document.getElementById('cdot-'+c);
+        if (el) { el.style.display='flex'; el.classList.remove('hit'); }
+        if (c === gs.lastCorner && el) el.classList.add('hit');
+      });
+      displayTxt += "<div style='margin-top:6px;font-size:12px;color:#94a3b8;'>" +
+        (gs.lastCorner ? (currentLang==='en' ? `Last corner: ${gs.lastCorner.toUpperCase()}` : `နောက်ဆုံးထောင့်: ${gs.lastCorner.toUpperCase()}`) : '') + "</div>";
+    }
+    else if (gs.currentQ.special === 'stroop2') {
+      const colorNames = currentLang==='en' ? ['RED','GREEN','BLUE','YELLOW'] : ['အနီ','အစိမ်း','အပြာ','အဝါ'];
+      const colorHex = { 0:'#ef4444',1:'#22c55e',2:'#38bdf8',3:'#eab308' };
+      const wordIdx = Math.floor(Math.random()*4);
+      let colorIdx = Math.floor(Math.random()*4);
+      gs._stroopMatch = Math.random() > 0.5;
+      if (gs._stroopMatch) colorIdx = wordIdx;
+      else { while(colorIdx===wordIdx) colorIdx = Math.floor(Math.random()*4); }
+      gs._stroopCorrect = gs._stroopMatch;
+      displayTxt += `<div style='margin-top:10px;font-size:28px;font-weight:800;color:${colorHex[colorIdx]};'>${colorNames[wordIdx]}</div>`;
+    }
+    else if (gs.currentQ.special === 'time5s') {
+      gs._time5Ready = false;
+    }
+    else if (gs.currentQ.special === 'math_sum5') {
+      const a = Math.floor(Math.random()*5)+1;
+      const b = Math.floor(Math.random()*5)+1;
+      gs._sumGt5 = (a+b) > 5;
+      displayTxt += `<div style='margin-top:8px;font-size:22px;font-weight:800;color:#eab308;'>${a} + ${b}</div>`;
+    }
+    else if (gs.currentQ.special === 'cats_gt3') {
+      const count = Math.floor(Math.random()*6)+1;
+      gs._catCountGt3 = (count > 3);
+      displayTxt += "<div class='large-emoji' style='font-size:32px;letter-spacing:4px;'>" + "🐱".repeat(count) + "</div>";
+    }
+    else if (gs.currentQ.special === 'night_only') {
+      // server checks hour from payload
+    }
+    else if (gs.currentQ.special === 'last2_wrong') {
+      // server uses gs.last2Wrong from payload
+    }
+    else if (gs.currentQ.special === 'close_eyes_3s') {
+      btn.style.opacity = '0.06';
+      gs._eyesReadyAt = null;
+      gs.delayTimeout = setTimeout(() => {
+        if (gs.phase === 'playing') {
+          btn.style.opacity = '1';
+          gs._eyesReadyAt = performance.now();
+          setTimeout(() => { gs._eyesReadyAt = null; }, 600); // 600ms reaction window
+        }
+      }, 3000);
+    }
+    else if (gs.currentQ.special === 'must_skip') {
+      // resolved via skip button
+    }
+    else if (gs.currentQ.special === 'press3_not3rd') {
+      gs._press3Count = 0;
+    }
+    else if (gs.currentQ.special === 'recall_q1') {
+      const colorMap = currentLang==='en' ? {green:'🟢',red:'🔴',blue:'🔵',yellow:'🟡'} : {green:'🟢',red:'🔴',blue:'🔵',yellow:'🟡'};
+      const opts = ['🟢','🔴','🔵','🟡'].sort(() => Math.random()-0.5);
+      gs._recallTarget = gs.q1Color || '🟢';
+      displayTxt += "<div style='display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:32px;'>" +
+        opts.map(e => `<span data-rc='${e}' style='cursor:pointer;'>${e}</span>`).join('') + "</div>";
+    }
+    else if (gs.currentQ.special === 'inverse_label') {
+      const isFalse = Math.random() > 0.5;
+      const labelTxt = isFalse ? 'False' : 'True';
+      const labelColor = isFalse ? '#ef4444' : '#22c55e';
+      gs.eventReady = isFalse; // pressing is correct only when label says "False"
+      displayTxt += `<div style='margin-top:10px;font-size:26px;font-weight:800;color:${labelColor};'>${labelTxt}</div>`;
+    }
+    else if (gs.currentQ.special === 'sum4') {
+      const nums = [];
+      while(nums.length < 4) {
+        const candidate = Math.floor(Math.random()*4)+1;
+        nums.push(candidate);
+      }
+      // ensure a subset sums to 4 (guarantee at least one combo)
+      gs._sum4Nums = nums;
+      gs._sum4Picked = [];
+      displayTxt += "<div style='display:flex;gap:10px;justify-content:center;margin-top:10px;'>" +
+        nums.map((n,i) => `<span data-n='${n}' data-i='${i}' style='cursor:pointer;background:#1f2f1f;border:1px solid #22c55e44;border-radius:8px;padding:6px 14px;font-weight:800;color:#22c55e;'>${n}</span>`).join('') + "</div>";
+    }
     qTextEl.innerHTML = displayTxt;
 
   // smallest_obj: attach click handlers to each emoji span
@@ -839,6 +1048,57 @@ function startRound() {
         const clicked = span.getAttribute('data-emoji');
         gs._smallestCorrect = (clicked === gs._smallestEmoji);
         resolve(true, 'press');
+      });
+    });
+  }
+
+  // green_only: click handlers for color emoji choices
+  if (gs.currentQ.special === 'green_only') {
+    qTextEl.querySelectorAll('[data-c]').forEach(span => {
+      span.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (gs.phase !== 'playing') return;
+        const clicked = span.getAttribute('data-c');
+        if (gs.round === 1 || qIdx === 0) gs.q1Color = clicked;
+        gs._greenChoiceCorrect = (clicked === '🟢');
+        resolve(true, 'press');
+      });
+    });
+  }
+
+  // recall_q1: click handlers for color choices
+  if (gs.currentQ.special === 'recall_q1') {
+    qTextEl.querySelectorAll('[data-rc]').forEach(span => {
+      span.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (gs.phase !== 'playing') return;
+        const clicked = span.getAttribute('data-rc');
+        gs._recallCorrect = (clicked === gs._recallTarget);
+        resolve(true, 'press');
+      });
+    });
+  }
+
+  // sum4: click handlers for number tiles, finalize when selection sums to 4
+  if (gs.currentQ.special === 'sum4') {
+    qTextEl.querySelectorAll('[data-n]').forEach(span => {
+      span.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (gs.phase !== 'playing') return;
+        const i = span.getAttribute('data-i');
+        const n = parseInt(span.getAttribute('data-n'));
+        if (gs._sum4Picked.includes(i)) return;
+        gs._sum4Picked.push(i);
+        span.style.background = '#22c55e';
+        span.style.color = '#0a1a0a';
+        const sum = gs._sum4Picked.reduce((acc,idx) => acc + gs._sum4Nums[parseInt(idx)], 0);
+        if (sum === 4) {
+          gs._sum4Correct = true;
+          resolve(true, 'press');
+        } else if (sum > 4) {
+          gs._sum4Correct = false;
+          resolve(true, 'press');
+        }
       });
     });
   }
@@ -874,6 +1134,77 @@ function startRound() {
   }, 50);
 }
 
+async function resolveMustSkip() {
+  if (gs.phase !== 'playing') return;
+  const qTextEl = document.getElementById('q-text');
+  clearInterval(gs.interval);
+  if (gs.delayTimeout) clearTimeout(gs.delayTimeout);
+  gs.phase = 'result';
+  gs.lastPressed = false;
+
+  let correct = false;
+  try {
+    const qIdx = (gs.round - 1) % QUESTIONS.length;
+    const resp = await fetch('/api/check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ qId: 'q' + qIdx, pressed: false, didSkip: true })
+    });
+    const data = await resp.json();
+    correct = data.correct === true;
+  } catch (e) { correct = false; }
+
+  gs.lastAns = correct;
+  gs.last2Wrong = (!correct && gs.prevWrong === true);
+  gs.prevWrong = !correct;
+
+  const btn = document.getElementById('main-btn');
+  const container = document.getElementById('ring-container');
+  qTextEl.className = 'q-text status-mode';
+  gs.totalAttempts++;
+
+  if (correct) {
+    gs.correctAttempts++;
+    gs.combo++;
+    if (gs.combo > gs.maxCombo) gs.maxCombo = gs.combo;
+    gs.score += (10 + (gs.combo * 2));
+    qTextEl.textContent = '✓';
+    btn.style.background = '#14532d';
+    btn.classList.add('answer-correct');
+    drawRing(gs.timeLeft / TIMER_MAX, '#22c55e');
+    const msgs = LANG[currentLang].correctMsgs;
+    showFeedback(msgs[Math.min(gs.combo - 1, msgs.length - 1)], 'positive');
+  } else {
+    gs.combo = 0;
+    gs.lives--;
+    qTextEl.textContent = '❌';
+    btn.style.background = '#450a0a';
+    btn.classList.add('answer-wrong');
+    drawRing(gs.timeLeft / TIMER_MAX, '#ef4444');
+    container.style.animation = 'shake 0.1s 5';
+    setTimeout(() => { container.style.animation = ''; }, 500);
+    if (gs.lives > 0) {
+      const msgs = LANG[currentLang].wrongMsgs;
+      showFeedback(msgs[Math.floor(Math.random() * msgs.length)], 'negative');
+    } else {
+      showFeedback(LANG[currentLang].wrongOver, 'negative');
+    }
+  }
+
+  setTimeout(() => {
+    btn.style.background = '';
+    btn.classList.remove('answer-correct','answer-wrong');
+    const flash = document.getElementById('round-flash');
+    if (flash) {
+      flash.style.background = correct ? 'rgba(34,197,94,0.07)' : 'rgba(239,68,68,0.07)';
+      flash.classList.add('active');
+      setTimeout(() => flash.classList.remove('active'), 150);
+    }
+    gs.round = getNextRound();
+    startRound();
+  }, 1400);
+}
+
 async function resolve(pressed, src, event = null) {
   if (gs.phase !== 'playing') return;
   const qTextEl = document.getElementById('q-text');
@@ -903,6 +1234,43 @@ async function resolve(pressed, src, event = null) {
     if (gs.tapCount < 3) return;
   }
 
+  // press3_not3rd: count presses; correct = 3 presses where 3rd press never happens (timeout on 3rd)
+  if (gs.currentQ.special === 'press3_not3rd') {
+    if (src === 'press') {
+      gs._press3Count++;
+      if (gs._press3Count === 3) {
+        // pressing on 3rd time is WRONG
+        gs._tap3NotThird = false;
+      } else if (gs._press3Count < 3) {
+        return; // need more presses
+      }
+    } else if (src === 'timeout') {
+      // timed out without a 3rd press = correct if exactly 2 presses happened
+      gs._tap3NotThird = (gs._press3Count === 2);
+    }
+  }
+
+  // reflex1s: must press after button becomes visible, within 1s
+  if (gs.currentQ.special === 'reflex1s' && src === 'press') {
+    gs._reflexHit = !!(gs._reflexReadyAt && (performance.now() - gs._reflexReadyAt) <= 1000);
+  }
+
+  // close_eyes_3s: must press within reaction window after 3s delay
+  if (gs.currentQ.special === 'close_eyes_3s' && src === 'press') {
+    gs._eyesReflexHit = !!gs._eyesReadyAt;
+  }
+
+  // shrink: must press after shrink happened
+  if (gs.currentQ.special === 'shrink' && src === 'press') {
+    gs._shrinkHit = gs._shrinkReady === true;
+  }
+
+  // time5s: press near the 5-second mark (within 0.4s tolerance)
+  if (gs.currentQ.special === 'time5s' && src === 'press') {
+    const elapsed = TIMER_MAX - gs.timeLeft;
+    gs._time5sHit = Math.abs(elapsed - 5) <= 0.4;
+  }
+
   clearInterval(gs.interval);
   if (gs.delayTimeout) clearTimeout(gs.delayTimeout);
 
@@ -923,16 +1291,42 @@ async function resolve(pressed, src, event = null) {
       lastAns: gs.lastAns,
       lastPressed: gs.lastPressed,
       timeElapsed: TIMER_MAX - gs.timeLeft,
-      hour: new Date().getHours()
+      hour: new Date().getHours(),
+      // Round 2 fields
+      greenPressed: gs._greenChoiceCorrect || false,
+      qNumEven: gs.eventReady,
+      reflexHit: gs._reflexHit || false,
+      hasNegation: gs._hasNegation || false,
+      flashCount: gs._flashCount || 0,
+      posCorrect: gs._posTLCorrect || false,
+      shrinkHit: gs._shrinkHit || false,
+      prevWrong: gs.prevWrong,
+      wordCountOk: gs._wordCountOk || false,
+      repeatCornerCorrect: (gs.currentQ.special === 'repeat_corner') ? (gs.lastCorner && gs.corners[gs.lastCorner]) || false : false,
+      stroopCorrect: gs._stroopCorrect || false,
+      time5sHit: gs._time5sHit || false,
+      sumGt5: gs._sumGt5 || false,
+      catCountGt3: gs._catCountGt3 || false,
+      isNight: !(new Date().getHours() >= 6 && new Date().getHours() < 18),
+      last2Wrong: gs.last2Wrong,
+      eyesReflexHit: gs._eyesReflexHit || false,
+      didSkip: false,
+      tap3NotThird: gs._tap3NotThird || false,
+      recallCorrect: gs._recallCorrect || false,
+      sum4Correct: gs._sum4Correct || false
     };
     const resp = await fetch('/api/check', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
+    if (!resp.ok) {
+      console.error('check API error status:', resp.status, await resp.text());
+    }
     const data = await resp.json();
     correct = data.correct === true;
   } catch (e) {
+    console.error('check API fetch failed:', e);
     // Network error: fail safe (mark wrong, don't crash game)
     correct = false;
   }
@@ -940,6 +1334,15 @@ async function resolve(pressed, src, event = null) {
 
   // Update lastAns for same_last / not_last questions
   gs.lastAns = correct;
+
+  // Round 2 state tracking
+  gs.last2Wrong = (!correct && gs.prevWrong === true);
+  gs.prevWrong = !correct;
+  if (gs.currentQ.special === 'corner_press' || gs.currentQ.special === 'repeat_corner') {
+    const hitCorner = Object.keys(gs.corners).find(c => gs.corners[c]);
+    if (hitCorner) gs.lastCorner = hitCorner;
+  }
+  if (gs.currentQ.special === 'green_only' && gs._greenChoiceCorrect) gs.q1Color = '🟢';
 
   ['tl','tr','bl','br'].forEach(c => {
     const el = document.getElementById('cdot-'+c);
@@ -1060,12 +1463,18 @@ document.getElementById('btn-start').addEventListener('click', () => {
 
 document.getElementById('btn-next').addEventListener('click', () => {
   if (gs.phase === 'playing') {
+    if (gs.currentQ && gs.currentQ.special === 'must_skip') {
+      gs._didSkip = true;
+      resolveMustSkip();
+      return;
+    }
     clearInterval(gs.interval);
     if (gs.delayTimeout) clearTimeout(gs.delayTimeout);
     gs.totalAttempts++;
     gs.lastPressed = false;
     gs.lastAns = false; // skip = treat as wrong for same_last logic
     gs.combo = 0;
+    gs.prevWrong = true;
     gs.round = getNextRound();
     startRound();
   }
