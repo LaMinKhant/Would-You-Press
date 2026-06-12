@@ -1,0 +1,47 @@
+# Quiz Game — Vercel Deploy Guide
+
+## Project Structure
+
+```
+project-root/
+├── index.html      ← Game UI (answers မပါဘူး)
+├── vercel.json     ← Vercel config
+└── api/
+    └── check.js    ← Server-side answer checker (SECRET)
+```
+
+## Security
+
+- `index.html` ထဲမှာ answers တွေ **မပါတော့ဘူး**
+- Inspect / DevTools နဲ့ ကြည့်ရင် questions တွေပဲ မြင်ရမယ်
+- အဖြေစစ်တာ `api/check.js` (server) မှာပဲ ဖြစ်တယ်
+
+## Deploy Steps
+
+### 1. GitHub repo တင်ပါ
+```bash
+git init
+git add .
+git commit -m "initial commit"
+git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
+git push -u origin main
+```
+
+### 2. Vercel မှာ import လုပ်ပါ
+1. https://vercel.com → **Add New Project**
+2. GitHub repo ကို select လုပ်ပါ
+3. **Deploy** နှိပ်ပါ — အဆင်ပြေသွားမယ်
+
+### 3. ပြီးပြီ!
+- Vercel က `api/check.js` ကို auto-detect လုပ်ပြီး serverless endpoint ဖြစ်သွားမယ်
+- Game က `/api/check` ကို POST call လုပ်ပြီး correct/wrong ပဲ ပြန်ရမယ်
+
+## API Response
+
+```json
+// POST /api/check
+// Request: { qId, pressed, eventReady, ... }
+// Response:
+{ "correct": true }   // or false
+// Answers တွေ response မှာ မပြန်ဘူး
+```
