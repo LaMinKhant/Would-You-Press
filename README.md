@@ -32,7 +32,6 @@ git push -u origin main
 2. GitHub repo ကို select လုပ်ပါ
 3. **Deploy** နှိပ်ပါ — အဆင်ပြေသွားမယ်
 
-### 3. ပြီးပြီ!
 - Vercel က `api/check.js` ကို auto-detect လုပ်ပြီး serverless endpoint ဖြစ်သွားမယ်
 - Game က `/api/check` ကို POST call လုပ်ပြီး correct/wrong ပဲ ပြန်မယ်
 
