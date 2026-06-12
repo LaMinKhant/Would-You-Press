@@ -18,7 +18,7 @@ project-root/
 
 ## Deploy Steps
 
-### 1. GitHub repo တင်ပါ
+### 1. GitHub repo
 ```bash
 git init
 git add .
@@ -27,7 +27,7 @@ git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
 git push -u origin main
 ```
 
-### 2. Vercel မှာ import လုပ်ပါ
+### 2. Vercel import
 1. https://vercel.com → **Add New Project**
 2. GitHub repo ကို select လုပ်ပါ
 3. **Deploy** နှိပ်ပါ — အဆင်ပြေသွားမယ်
