@@ -12,7 +12,7 @@ project-root/
 
 ## Security
 
-- `index.html` ထဲမှာ answers တွေ **မပါတော့ဘူး**
+- Question တွေက `index.html` ထဲမှာ 
 - Inspect / DevTools နဲ့ ကြည့်ရင် questions တွေပဲ မြင်ရမယ်
 - အဖြေစစ်တာ `api/check.js` (server) မှာပဲ ဖြစ်တယ်
 
@@ -34,7 +34,7 @@ git push -u origin main
 
 ### 3. ပြီးပြီ!
 - Vercel က `api/check.js` ကို auto-detect လုပ်ပြီး serverless endpoint ဖြစ်သွားမယ်
-- Game က `/api/check` ကို POST call လုပ်ပြီး correct/wrong ပဲ ပြန်ရမယ်
+- Game က `/api/check` ကို POST call လုပ်ပြီး correct/wrong ပဲ ပြန်မယ်
 
 ## API Response
 
@@ -43,5 +43,5 @@ git push -u origin main
 // Request: { qId, pressed, eventReady, ... }
 // Response:
 { "correct": true }   // or false
-// Answers တွေ response မှာ မပြန်ဘူး
+// Answers တွေကို response မှာ မပြန်ဘူး
 ```
