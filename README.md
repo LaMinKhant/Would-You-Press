@@ -4,7 +4,7 @@
 
 ```
 project-root/
-├── index.html      ← Game UI (answers မပါဘူး)
+├── index.html      ← Game UI (Question only)
 ├── vercel.json     ← Vercel config
 └── api/
     └── check.js    ← Server-side answer checker (SECRET)
