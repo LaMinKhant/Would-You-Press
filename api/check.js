@@ -182,8 +182,8 @@ module.exports = function handler(req, res) {
     correct = (src === 'press' && greenPressed === true);
   }
   else if (q.special === 'even_qnum') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && qNumEven === true);
+    // press only if qNumEven; timeout correct only if NOT qNumEven
+    correct = (src === 'press') ? (qNumEven === true) : (qNumEven !== true);
   }
   else if (q.special === 'reflex1s') {
     correct = (src === 'press' && reflexHit === true);
@@ -209,26 +209,26 @@ module.exports = function handler(req, res) {
     else correct = (src === 'timeout');
   }
   else if (q.special === 'two_words_max') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && wordCountOk === true);
+    // press only if wordCountOk (<=2 words); timeout correct only if NOT wordCountOk (>2 words)
+    correct = (src === 'press') ? (wordCountOk === true) : (wordCountOk !== true);
   }
   else if (q.special === 'repeat_corner') {
     correct = (src !== 'timeout' && repeatCornerCorrect === true);
   }
   else if (q.special === 'stroop2') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && stroopCorrect === true);
+    // press only if colors match (stroopCorrect); timeout correct only if colors DON'T match
+    correct = (src === 'press') ? (stroopCorrect === true) : (stroopCorrect !== true);
   }
   else if (q.special === 'time5s') {
     correct = (src === 'press' && time5sHit === true);
   }
   else if (q.special === 'math_sum5') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && sumGt5 === true);
+    // press only if sum > 5 (sumGt5); timeout correct only if sum <= 5
+    correct = (src === 'press') ? (sumGt5 === true) : (sumGt5 !== true);
   }
   else if (q.special === 'cats_gt3') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && catCountGt3 === true);
+    // press only if cats > 3 (catCountGt3); timeout correct only if cats <= 3
+    correct = (src === 'press') ? (catCountGt3 === true) : (catCountGt3 !== true);
   }
   else if (q.special === 'night_only') {
     const isDay = (hour >= 6 && hour < 18);
@@ -252,8 +252,8 @@ module.exports = function handler(req, res) {
     correct = (src === 'press' && recallCorrect === true);
   }
   else if (q.special === 'inverse_label') {
-    if (src === 'timeout') correct = false;
-    else correct = (src === 'press' && eventReady === true);
+    // press only if label says 'False' (eventReady); timeout correct only if label says 'True'
+    correct = (src === 'press') ? (eventReady === true) : (eventReady !== true);
   }
   else if (q.special === 'sum4') {
     correct = (src === 'press' && sum4Correct === true);
