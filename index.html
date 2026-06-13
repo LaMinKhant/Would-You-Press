@@ -516,53 +516,53 @@ function applyLang() {
 
 // QUESTIONS 
 const QUESTIONS = [
-  { level: 'Easy',   textMy: "နှိပ်ပါ",                                           textEn: "Press" },
-  { level: 'Easy',   textMy: "မနှိပ်ပါနဲ့",                                       textEn: "DO NOT PRESS" },
-  { level: 'Easy',   textMy: "မြန်မြန်လုပ်၊ မနှိပ်နဲ့ဦး!!!",                      textEn: "quickly don't press!!!" },
-  { level: 'Easy',   textMy: "သေချာပေါက် နှိပ်လိုက်ပါ",                           textEn: "do press" },
-  { level: 'Easy',   textMy: "ကျော်မသွားနဲ့၊ နှိပ်!",                             textEn: "Don't skip this, press!" },
-  { level: 'Easy',   textMy: "ရပ်လိုက်! ဘာမှမနှိပ်နဲ့!",                         textEn: "Freeze! Don't move!" },
+  { level: 'Easy',   textMy: "နှိပ်ပါ",                                           textEn: "Press", ans: true },
+  { level: 'Easy',   textMy: "မနှိပ်ပါနဲ့",                                       textEn: "DO NOT PRESS", ans: true },
+  { level: 'Easy',   textMy: "မြန်မြန်လုပ်၊ မနှိပ်နဲ့ဦး!!!",                      textEn: "quickly don't press!!!", ans: false },
+  { level: 'Easy',   textMy: "သေချာပေါက် နှိပ်လိုက်ပါ",                           textEn: "do press", ans: true },
+  { level: 'Easy',   textMy: "ကျော်မသွားနဲ့၊ နှိပ်!",                             textEn: "Don't skip this, press!", ans: true },
+  { level: 'Easy',   textMy: "ရပ်လိုက်! ဘာမှမနှိပ်နဲ့!",                         textEn: "Freeze! Don't move!", ans: false },
   { level: 'Easy',   textMy: "ကြွက်ကို မြင်ရမှ နှိပ်ပါ",                          textEn: "Press when you see a rat",           special: 'rat_delay' },
   { level: 'Easy',   textMy: "ပင့်ကူမြင်ရင် ဘယ်တော့မှ မနှိပ်ပါနဲ့",              textEn: "Never press when you see a spider",  special: 'spider_delay' },
   { level: 'Easy',   textMy: "မျက်နှာပြင် အနီရောင်ပြောင်းရင် နှိပ်ပါ",           textEn: "Press if the screen turns red",      special: 'red_screen' },
-  { level: 'Easy',   textMy: "မနိပ်ပါနဲ့",                                        textEn: "Do net press" },
-  { level: 'Easy',   textMy: "အစိမ်းရောင်ခလုတ်ကို နှိပ်ပါ",                      textEn: "Press the Green button" },
-  { level: 'Easy',   textMy: "ဒီစာသားကို လျစ်လျူရှုလိုက်ပါ",                     textEn: "Ignore this statement" },
+  { level: 'Easy',   textMy: "မနိပ်ပါနဲ့",                                        textEn: "Do net press", ans: false },
+  { level: 'Easy',   textMy: "အစိမ်းရောင်ခလုတ်ကို နှိပ်ပါ",                      textEn: "Press the Green button", ans: true },
+  { level: 'Easy',   textMy: "ဒီစာသားကို လျစ်လျူရှုလိုက်ပါ",                     textEn: "Ignore this statement", ans: false },
   { level: 'Easy',   textMy: "၃ ချက် အမြန်နှိပ်ပါ!",                             textEn: "Tap 3 times fast!",                  special: 'tap3' },
   { level: 'Easy',   textMy: "ထောင့်တစ်ထောင့်ကို တစ်ချက်စီနှိပ်ပါ",               textEn: "Press once per corner",              special: 'corner_press' },
   { level: 'Easy',   textMy: "ခလုတ်ကလွဲလို့ ကြိုက်တဲ့နေရာနှိပ်ပါ",               textEn: "Click anywhere but the button",      special: 'click_anywhere_but' },
 
-  { level: 'Medium', textMy: "ဒီနံပါတ် ၂၇ ကို မှတ်ထားပါ",                        textEn: "Remember this number: 27" },
-  { level: 'Medium', textMy: "မင်းက လူသားတစ်ယောက်ဆိုရင် နှိပ်ပါ",                textEn: "Press if you're a human" },
+  { level: 'Medium', textMy: "ဒီနံပါတ် ၂၇ ကို မှတ်ထားပါ",                        textEn: "Remember this number: 27", ans: false },
+  { level: 'Medium', textMy: "မင်းက လူသားတစ်ယောက်ဆိုရင် နှိပ်ပါ",                textEn: "Press if you're a human", ans: true },
   { level: 'Medium', textMy: "ကြောင်အရေအတွက် စုံကိန်းဖြစ်ရင် နှိပ်ပါ",           textEn: "Press when cats are even",           special: 'cats_even' },
-  { level: 'Medium', textMy: "၅ + ၅ = ၁၁ ဆိုရင် နှိပ်ပါ",                       textEn: "Press if 5 + 5 = 11" },
-  { level: 'Medium', textMy: "နိုင်ချင်ရင် နှိပ်ပါ",                              textEn: "Press if you want to win" },
+  { level: 'Medium', textMy: "၅ + ၅ = ၁၁ ဆိုရင် နှိပ်ပါ",                       textEn: "Press if 5 + 5 = 11", ans: false },
+  { level: 'Medium', textMy: "နိုင်ချင်ရင် နှိပ်ပါ",                              textEn: "Press if you want to win", ans: true },
   { level: 'Medium', textMy: "အသေးဆုံး ပစ္စည်းလေးကို လိုက်နှိပ်ပါ",              textEn: "Click the smallest object",          special: 'smallest_obj' },
-  { level: 'Medium', textMy: "မှတ်ခိုင်းတဲ့ နံပါတ်က ၂၇ ဟုတ်ပါက နှိပ်ပါ",        textEn: "Was the number earlier 27? Press!" },
+  { level: 'Medium', textMy: "မှတ်ခိုင်းတဲ့ နံပါတ်က ၂၇ ဟုတ်ပါက နှိပ်ပါ",        textEn: "Was the number earlier 27? Press!", ans: true },
   { level: 'Medium', textMy: "အခု နေ့ခင်းဘက်ဆိုရင် နှိပ်ပါ",                    textEn: "Press if it is day time now",        special: 'daytime' },
   { level: 'Medium', textMy: "ကြောင်မဟုတ်ဘဲ ခွေးမြင်ရတဲ့အခါ နှိပ်ပါ",           textEn: "Press when you see a dog, not a cat", special: 'dog_cat' },
   { level: 'Medium', textMy: "၃ စက္ကန့်ပြည့်အောင် စောင့်ထားပြီးမှ နှိပ်ပါ",     textEn: "Wait 3 seconds, then press",         special: 'wait3' },
-  { level: 'Medium', textMy: "ဖုန်းဘက်ထရီ ၁၀% ကျော်ရင် နှိပ်ပါ",                textEn: "Press if your battery is above 10%" },
-  { level: 'Medium', textMy: "'နှိပ်ပါ' ရဲ့ ပြောင်းပြန်ကိုလုပ်ပါ",               textEn: "Do the opposite of 'Press'" },
-  { level: 'Medium', textMy: "ဂိမ်းဆော့နေတာ သေချက်ကျရင် နှိပ်ပါ",               textEn: "Press if you are playing a game" },
+  { level: 'Medium', textMy: "ဖုန်းဘက်ထရီ ၁၀% ကျော်ရင် နှိပ်ပါ",                textEn: "Press if your battery is above 10%", ans: true },
+  { level: 'Medium', textMy: "'နှိပ်ပါ' ရဲ့ ပြောင်းပြန်ကိုလုပ်ပါ",               textEn: "Do the opposite of 'Press'", ans: false },
+  { level: 'Medium', textMy: "ဂိမ်းဆော့နေတာ သေချက်ကျရင် နှိပ်ပါ",               textEn: "Press if you are playing a game", ans: true },
   { level: 'Medium', textMy: "အနီစာသားကိုမနှိပ်နဲ့၊ အပြာရောင်ကို နှိပ်ပါ",      textEn: "Click the blue text, not the red text", special: 'color_text' },
-  { level: 'Medium', textMy: "ဒါကို ဖတ်တတ်ရင် နှိပ်ပါ",                          textEn: "Press if you can read this" },
+  { level: 'Medium', textMy: "ဒါကို ဖတ်တတ်ရင် နှိပ်ပါ",                          textEn: "Press if you can read this", ans: true },
 
   { level: 'Hard',   textMy: "အရင်မေးခွန်းရဲ့ အဖြေအတိုင်းပဲ လုပ်ပါ",            textEn: "Same as last",                       special: 'same_last' },
-  { level: 'Hard',   textMy: "Jumpscare ကြိုက်ရင် နှိပ်ပါ",                      textEn: "Press if you like jumpscares",        special: 'jumpscare' },
-  { level: 'Hard',   textMy: "ကြောင်တွေ မြင်ဖူးခဲ့ရင် နှိပ်ပါ",                 textEn: "Press if you saw any cats earlier" },
-  { level: 'Hard',   textMy: "နောက်လာမယ့် ပြောကြားချက်က အလိမ်အညာ ဖြစ်တယ်",    textEn: "The next statement is a lie" },
-  { level: 'Hard',   textMy: "နောက်လာမယ့် အမိန့်က မှားယွင်းနေတယ်",              textEn: "The next command is wrong" },
-  { level: 'Hard',   textMy: "ပြီးခဲ့တဲ့ စကားက အမှန်ပဲ",                         textEn: "The previous statement was true" },
+  { level: 'Hard',   textMy: "Jumpscare ကြိုက်ရင် နှိပ်ပါ",                      textEn: "Press if you like jumpscares",        special: 'jumpscare', ans: true },
+  { level: 'Hard',   textMy: "ကြောင်တွေ မြင်ဖူးခဲ့ရင် နှိပ်ပါ",                 textEn: "Press if you saw any cats earlier", ans: true },
+  { level: 'Hard',   textMy: "နောက်လာမယ့် ပြောကြားချက်က အလိမ်အညာ ဖြစ်တယ်",    textEn: "The next statement is a lie", ans: false },
+  { level: 'Hard',   textMy: "နောက်လာမယ့် အမိန့်က မှားယွင်းနေတယ်",              textEn: "The next command is wrong", ans: false },
+  { level: 'Hard',   textMy: "ပြီးခဲ့တဲ့ စကားက အမှန်ပဲ",                         textEn: "The previous statement was true", ans: false },
   { level: 'Hard',   textMy: "ပြီးခဲ့တဲ့တစ်ခုတုန်းက မနှိပ်ခဲ့ရင် အခုနှိပ်ပါ",   textEn: "Press if you didn't press the last one", special: 'not_last' },
   { level: 'Hard',   textMy: "နောက်ဆုံး လုပ်ခဲ့တဲ့ အပြုအမူကို ပြန်လုပ်ပါ။",     textEn: "Repeat the last action",             special: 'same_last' },
-  { level: 'Hard',   textMy: "အသက်ရှူပြီးတဲ့အခါမှာပဲ နှိပ်ပါ 😊",               textEn: "Press only when you are finished breathing. 😊" },
+  { level: 'Hard',   textMy: "အသက်ရှူပြီးတဲ့အခါမှာပဲ နှိပ်ပါ 😊",               textEn: "Press only when you are finished breathing. 😊", ans: true },
   { level: 'Hard',   textMy: "ခုတင်တင် ပျောက်သွားတဲ့ ခလုတ်နေရာကို နှိပ်ပါ",    textEn: "Press the button that just disappeared", special: 'disappear' },
-  { level: 'Hard',   textMy: "မျက်စိမှိတ်ပြီး နှိပ်လိုက်ပါ",                    textEn: "Close your eyes and press" },
-  { level: 'Hard',   textMy: "၂၇ က မကိန်း ဖြစ်ခဲ့ရင် နှိပ်ပါ",                 textEn: "Press if 27 was an odd number" },
-  { level: 'Hard',   textMy: "နောက်လာမယ့် အမိန့် ၂ ခုလုံးကို ကျော်လိုက်ပါ",    textEn: "Ignore the next 2 commands" },
+  { level: 'Hard',   textMy: "မျက်စိမှိတ်ပြီး နှိပ်လိုက်ပါ",                    textEn: "Close your eyes and press", ans: true },
+  { level: 'Hard',   textMy: "၂၇ က မကိန်း ဖြစ်ခဲ့ရင် နှိပ်ပါ",                 textEn: "Press if 27 was an odd number", ans: true },
+  { level: 'Hard',   textMy: "နောက်လာမယ့် အမိန့် ၂ ခုလုံးကို ကျော်လိုက်ပါ",    textEn: "Ignore the next 2 commands", ans: false },
   { level: 'Hard',   textMy: "ဖုံးကွယ်ထားတဲ့ ခလုတ်ကို ရှာနှိပ်ပါ",              textEn: "Click the hidden button",            special: 'hidden' },
-  { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက လုပ်ခဲ့တဲ့အတိုင်း ပြန်လုပ်ပါ", textEn: "Do what you did at Question 1" },
+  { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက လုပ်ခဲ့တဲ့အတိုင်း ပြန်လုပ်ပါ", textEn: "Do what you did at Question 1", ans: true },
 
   // ===== Round 2: Bonus questions (unlock after first 45) =====
   // Easy 2
@@ -573,9 +573,9 @@ const QUESTIONS = [
   { level: 'Easy',   textMy: "ခလုတ်ပေါ်လာတဲ့ အရေအတွက် ၅ ခုမြောက်မှ နှိပ်ပါ", textEn: "Press only on the 5th flash", special: 'count5th' },
   { level: 'Easy',   textMy: "မျက်နှာပြင်ရဲ့ ဘယ်ဘက်အပေါ်ထောင့်မှာ ခလုတ်ပေါ်မှ နှိပ်ပါ", textEn: "Press only when the button is top-left", special: 'pos_tl' },
   { level: 'Easy',   textMy: "ခလုတ်အရွယ်အစား သေးသွားရင် နှိပ်ပါ", textEn: "Press when the button shrinks", special: 'shrink' },
-  { level: 'Easy',   textMy: "မိုးကောင်းကင်ဟာ အစိမ်းရောင်ဆိုရင် နှိပ်ပါ", textEn: "Press if the sky is normally green" },
-  { level: 'Easy',   textMy: "ဂိမ်းတစ်ခုမှာ Lives ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if this game has lives" },
-  { level: 'Easy',   textMy: "ပင်လယ်ရေဟာ ချိုရည်ဆိုရင် နှိပ်ပါ", textEn: "Press if seawater is sweet" },
+  { level: 'Easy',   textMy: "မိုးကောင်းကင်ဟာ အစိမ်းရောင်ဆိုရင် နှိပ်ပါ", textEn: "Press if the sky is normally green", ans: false },
+  { level: 'Easy',   textMy: "ဂိမ်းတစ်ခုမှာ Lives ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if this game has lives", ans: true },
+  { level: 'Easy',   textMy: "ပင်လယ်ရေဟာ ချိုရည်ဆိုရင် နှိပ်ပါ", textEn: "Press if seawater is sweet", ans: false },
 
   // Medium 2
   { level: 'Medium', textMy: "အရင်မေးခွန်းရဲ့ အဖြေမှန်ခဲ့ရင် အခုမနှိပ်ပါနဲ့၊ အမှားဆိုမှ နှိပ်ပါ", textEn: "If the last answer was correct, don't press; if it was wrong, press", special: 'prev_wrong' },
@@ -586,8 +586,8 @@ const QUESTIONS = [
   { level: 'Medium', textMy: "ဒီစာသားထဲက ဂဏန်းတွေကို ပေါင်းပြီး ၅ ထက်ကြီးရင် နှိပ်ပါ", textEn: "Sum the numbers below — press if greater than 5", special: 'math_sum5' },
   { level: 'Medium', textMy: "စခရင်ပေါ်မှာ ကြောင်ပုံ ၃ ကောင်ထက်ပိုပါရင် နှိပ်ပါ", textEn: "Press if there are more than 3 cats", special: 'cats_gt3' },
   { level: 'Medium', textMy: "အခုအချိန်မှာ နေ့ခင်းဘက်ဆိုရင် မနှိပ်ပါနဲ့၊ ညဘက်ဆိုမှ နှိပ်ပါ", textEn: "Don't press if it's daytime; press only if it's night", special: 'night_only' },
-  { level: 'Medium', textMy: "ပန်းကန်တစ်ချပ်မှာ ဘက်(၄)ဘက် ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if a square has 4 sides" },
-  { level: 'Medium', textMy: "ငါးတွေဟာ လေထဲတွင် အသက်ရှူနိုင်တယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if fish can breathe air normally" },
+  { level: 'Medium', textMy: "ပန်းကန်တစ်ချပ်မှာ ဘက်(၄)ဘက် ရှိတယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if a square has 4 sides", ans: true },
+  { level: 'Medium', textMy: "ငါးတွေဟာ လေထဲတွင် အသက်ရှူနိုင်တယ်ဆိုရင် နှိပ်ပါ", textEn: "Press if fish can breathe air normally", ans: false },
 
   // Hard 2
   { level: 'Hard',   textMy: "နောက်ဆုံးမေးခွန်း ၂ ခုလုံးရဲ့ အဖြေမှားခဲ့မှသာ အခု နှိပ်ပါ", textEn: "Press only if your last 2 answers were both wrong", special: 'last2_wrong' },
@@ -597,9 +597,9 @@ const QUESTIONS = [
   { level: 'Hard',   textMy: "ခလုတ်ကို ၃ ခါနှိပ်ပါ၊ ဒါပေမဲ့ ၃ ကြိမ်မြောက်မှာတော့ မနှိပ်ပါနဲ့", textEn: "Press 3 times, but don't press on the 3rd time", special: 'press3_not3rd' },
   { level: 'Hard',   textMy: "မေးခွန်းနံပါတ် ၁ တုန်းက ဘာအရောင်ကို နှိပ်ခဲ့လဲ? အဲ့ဒီအရောင်ကို ရှာပြီး နှိပ်ပါ", textEn: "What color did you press on Question 1? Find and press that color", special: 'recall_q1' },
   { level: 'Hard',   textMy: "ခလုတ်တွေ အကုန်လုံးရဲ့ ပေါင်းလဒ်က ၄ ဖြစ်မှ နှိပ်ပါ", textEn: "Press the buttons whose total sum equals 4", special: 'sum4' },
-  { level: 'Hard',   textMy: "ဒီမေးခွန်းက အလိမ်အညာဖြစ်တဲ့အတွက် မနှိပ်ပါနဲ့", textEn: "This question is a trick — do NOT press" },
-  { level: 'Hard',   textMy: "သင်ဟာ စက်ရုပ်တစ်ခု မဟုတ်ပါက နှိပ်ပါ", textEn: "Press if you are not a robot" },
-  { level: 'Hard',   textMy: "ဒီစာကြောင်းကို ၂ ကြိမ်ဖတ်ပြီးမှ နှိပ်ပါ (အချိန်တွေးတွေး)", textEn: "Read this sentence twice before pressing (think about timing)" }
+  { level: 'Hard',   textMy: "ဒီမေးခွန်းက အလိမ်အညာဖြစ်တဲ့အတွက် မနှိပ်ပါနဲ့", textEn: "This question is a trick — do NOT press", ans: false },
+  { level: 'Hard',   textMy: "သင်ဟာ စက်ရုပ်တစ်ခု မဟုတ်ပါက နှိပ်ပါ", textEn: "Press if you are not a robot", ans: true },
+  { level: 'Hard',   textMy: "ဒီစာကြောင်းကို ၂ ကြိမ်ဖတ်ပြီးမှ နှိပ်ပါ (အချိန်တွေးတွေး)", textEn: "Read this sentence twice before pressing (think about timing)", ans: false },
 ];
 
 function getQText(q) { return currentLang === 'en' ? q.textEn : q.textMy; }
@@ -885,6 +885,9 @@ function startRound() {
       displayTxt = txt + "<div class='large-emoji'>" + animal + "</div>";
       gs.eventReady = isDog; // true = dog = correct to press
     } 
+    else if (gs.currentQ.special === 'wait3') {
+      displayTxt = currentLang === 'en' ? 'Wait 3 seconds, then press!' : '၃ စက္ကန့် စောင့်ပြီးမှ နှိပ်ပါ!';
+    }
     else if (gs.currentQ.special === 'same_last') {
       // server uses lastAns from payload
     } 
