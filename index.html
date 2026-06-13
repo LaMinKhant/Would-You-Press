@@ -1333,8 +1333,16 @@ async function resolve(pressed, src, event = null) {
   gs.lastPressed = (src === 'press');
 
   // ── Server-side answer check ──────────────────────────────────────────────
+  // dog_cat: client-side resolve (check.js can't handle cat+timeout=correct)
   let correct = false;
-  try {
+  if (gs.currentQ.special === 'dog_cat') {
+    const isDog = gs.eventReady;
+    correct = isDog ? (src === 'press') : (src === 'timeout');
+  } else if (gs.currentQ.special === 'color_text') {
+    correct = (src === 'timeout'); // trick question — button is not the blue text
+  } else if (gs.currentQ.special === 'cats_even') {
+    correct = gs.eventReady ? (src === 'press') : (src === 'timeout');
+  } else try {
     const qIdx = (gs.round - 1) % QUESTIONS.length;
     const payload = {
       qId: 'q' + qIdx,
@@ -1382,13 +1390,12 @@ async function resolve(pressed, src, event = null) {
     correct = data.correct === true;
   } catch (e) {
     console.error('check API fetch failed:', e);
-    // Network error: fail safe (mark wrong, don't crash game)
     correct = false;
-  }
+  } // end else (non-dog_cat)
   // ─────────────────────────────────────────────────────────────────────────
 
-  // Update lastAns for same_last / not_last questions
-  gs.lastAns = correct;
+  // Update lastAns for same_last / not_last questions (track what was pressed, not whether correct)
+  gs.lastAns = gs.lastPressed; // true = pressed, false = didn't press
 
   // Round 2 state tracking
   gs.last2Wrong = (!correct && gs.prevWrong === true);
